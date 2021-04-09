@@ -1,5 +1,6 @@
 package com.ukswordzkieit.smarthome.controllers;
 
+import com.ukswordzkieit.smarthome.models.ThermoDriver;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,8 @@ public class RESTController
 {
     @RequestMapping("/test")
     public String index() {
-        return "OgolnieDziala";
+        ThermoDriver thermoDriver = new ThermoDriver();
+        thermoDriver.setHouseTemp(13.0);
+        return Double.toString(thermoDriver.getHouseTemp());
     }
 }
