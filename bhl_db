@@ -1,0 +1,467 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.5
+-- Dumped by pg_dump version 12.5
+
+-- Started on 2021-04-09 23:27:20
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 205 (class 1259 OID 16429)
+-- Name: Godziny; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Godziny" (
+    id integer NOT NULL,
+    "godzMin" time without time zone,
+    "godzMax" time without time zone
+);
+
+
+ALTER TABLE public."Godziny" OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 16482)
+-- Name: MiesiaceOgniwaPK; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."MiesiaceOgniwaPK" (
+    id integer NOT NULL,
+    miesiace text
+);
+
+
+ALTER TABLE public."MiesiaceOgniwaPK" OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16469)
+-- Name: MiesiaceTaryfaPK; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."MiesiaceTaryfaPK" (
+    id integer NOT NULL,
+    miesiace text
+);
+
+
+ALTER TABLE public."MiesiaceTaryfaPK" OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16394)
+-- Name: MocGrzewcza; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."MocGrzewcza" (
+    id integer NOT NULL,
+    "temperaturaMax" integer,
+    "temperaturaMin" integer,
+    moc double precision,
+    podtrzymanie integer,
+    czas double precision
+);
+
+
+ALTER TABLE public."MocGrzewcza" OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 16399)
+-- Name: OczekiwanaTemperatura; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."OczekiwanaTemperatura" (
+    "typDnia" text,
+    "godzinaMin" time without time zone,
+    "godzinaMax" time without time zone,
+    temperatura integer
+);
+
+
+ALTER TABLE public."OczekiwanaTemperatura" OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 16434)
+-- Name: SredniaMocPozostale; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."SredniaMocPozostale" (
+    "typDnia" text,
+    "GodzMin" time without time zone,
+    "GodzMax" time without time zone,
+    "Moc" double precision
+);
+
+
+ALTER TABLE public."SredniaMocPozostale" OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 16451)
+-- Name: Taryfa; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Taryfa" (
+    "idMiesiacaTaryfa" integer NOT NULL,
+    "typDnia" text,
+    "godzMin" time without time zone,
+    "godzMax" time without time zone,
+    koszt double precision,
+    przychod double precision
+);
+
+
+ALTER TABLE public."Taryfa" OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 16413)
+-- Name: WydajnoscOgniw; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."WydajnoscOgniw" (
+    "idMiesiace" integer,
+    "idGodzA" integer,
+    "idGodzB" integer,
+    "ChmuryMin" integer,
+    "ChmuryMax" integer,
+    moc double precision
+);
+
+
+ALTER TABLE public."WydajnoscOgniw" OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16462)
+-- Name: logOddana; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."logOddana" (
+    id integer NOT NULL,
+    data date,
+    "oddanaEnergia" double precision,
+    kwota double precision
+);
+
+
+ALTER TABLE public."logOddana" OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 16457)
+-- Name: logWykorzystana; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."logWykorzystana" (
+    id integer NOT NULL,
+    data date,
+    "wykorzystanaEnergia" double precision,
+    kwota double precision
+);
+
+
+ALTER TABLE public."logWykorzystana" OWNER TO postgres;
+
+--
+-- TOC entry 2871 (class 0 OID 16429)
+-- Dependencies: 205
+-- Data for Name: Godziny; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Godziny" (id, "godzMin", "godzMax") FROM stdin;
+1	15:00:00	08:00:00
+2	08:00:00	10:00:00
+3	14:00:00	15:00:00
+4	10:00:00	14:00:00
+5	16:00:00	07:00:00
+6	07:00:00	09:00:00
+7	15:00:00	16:00:00
+8	09:00:00	15:00:00
+9	18:00:00	06:00:00
+10	06:00:00	07:00:00
+11	17:00:00	18:00:00
+12	07:00:00	17:00:00
+13	20:00:00	05:00:00
+14	05:00:00	07:00:00
+15	19:00:00	20:00:00
+16	07:00:00	19:00:00
+\.
+
+
+--
+-- TOC entry 2877 (class 0 OID 16482)
+-- Dependencies: 211
+-- Data for Name: MiesiaceOgniwaPK; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."MiesiaceOgniwaPK" (id, miesiace) FROM stdin;
+1	1, 12
+2	2, 3, 10, 11
+3	4, 5, 9
+4	6, 7, 8
+\.
+
+
+--
+-- TOC entry 2876 (class 0 OID 16469)
+-- Dependencies: 210
+-- Data for Name: MiesiaceTaryfaPK; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."MiesiaceTaryfaPK" (id, miesiace) FROM stdin;
+1	1, 2, 3, 10, 11, 12
+2	4, 5, 6, 7, 8, 9
+\.
+
+
+--
+-- TOC entry 2868 (class 0 OID 16394)
+-- Dependencies: 202
+-- Data for Name: MocGrzewcza; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."MocGrzewcza" (id, "temperaturaMax", "temperaturaMin", moc, podtrzymanie, czas) FROM stdin;
+1	\N	20	0	\N	\N
+2	20	15	0.5	2	6
+3	15	5	1	4	4
+4	5	0	2	5	3
+5	0	-5	3	6	2
+6	-5	-10	5	7	1
+7	-10	-20	7	10	0.5
+8	-20	\N	9	12	0.25
+\.
+
+
+--
+-- TOC entry 2869 (class 0 OID 16399)
+-- Dependencies: 203
+-- Data for Name: OczekiwanaTemperatura; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."OczekiwanaTemperatura" ("typDnia", "godzinaMin", "godzinaMax", temperatura) FROM stdin;
+roboczy	00:00:00	04:59:00	20
+roboczy	05:00:00	23:59:00	23
+wolne	00:00:00	07:59:00	20
+wolne	08:00:00	23:59:00	23
+wakacje	00:00:00	00:59:00	12
+\.
+
+
+--
+-- TOC entry 2872 (class 0 OID 16434)
+-- Dependencies: 206
+-- Data for Name: SredniaMocPozostale; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."SredniaMocPozostale" ("typDnia", "GodzMin", "GodzMax", "Moc") FROM stdin;
+robocze	00:00:00	04:59:00	0.5
+robocze	05:00:00	07:59:00	3
+robocze	08:00:00	09:59:00	2
+robocze	10:00:00	15:59:00	1
+robocze	16:00:00	19:59:00	2
+robocze	20:00:00	23:59:00	1
+wolne	00:00:00	07:59:00	0.5
+wolne	08:00:00	11:59:00	3
+wolne	12:00:00	16:59:00	1
+wolne	17:00:00	23:59:00	2
+wakacje	00:00:00	23:59:00	0.5
+\.
+
+
+--
+-- TOC entry 2873 (class 0 OID 16451)
+-- Dependencies: 207
+-- Data for Name: Taryfa; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Taryfa" ("idMiesiacaTaryfa", "typDnia", "godzMin", "godzMax", koszt, przychod) FROM stdin;
+1	robocze	00:00:00	05:59:00	1	0.5
+1	robocze	06:00:00	12:59:00	2	2.5
+1	robocze	13:00:00	14:59:00	1	1
+1	robocze	15:00:00	21:59:00	2	2.5
+1	robocze	22:00:00	23:59:00	1	0.5
+1	wolne	00:00:00	23:59:00	1	0.5
+2	robocze	00:00:00	05:59:00	1	0.5
+2	robocze	06:00:00	12:59:00	2	2.5
+2	robocze	15:00:00	16:59:00	1	1
+2	robocze	17:00:00	21:59:00	2	2.5
+2	robocze	22:00:00	23:59:00	1	0.5
+2	wolne	00:00:00	11:59:00	1	0.5
+2	wolne	12:00:00	14:59:00	0.5	0.25
+2	wolne	15:00:00	23:59:00	1	0.5
+\.
+
+
+--
+-- TOC entry 2870 (class 0 OID 16413)
+-- Dependencies: 204
+-- Data for Name: WydajnoscOgniw; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."WydajnoscOgniw" ("idMiesiace", "idGodzA", "idGodzB", "ChmuryMin", "ChmuryMax", moc) FROM stdin;
+1	1	\N	90	100	0
+1	2	3	90	100	1.5
+1	4	\N	90	100	3
+1	1	\N	60	90	0
+1	2	3	60	90	1
+1	4	\N	60	90	2
+1	1	\N	\N	60	0
+1	2	3	\N	60	0.5
+1	4	\N	\N	60	1.5
+2	5	\N	90	100	0
+2	6	7	90	100	2
+2	8	\N	90	100	4
+2	5	\N	60	90	0
+2	6	7	60	90	2
+2	8	\N	60	90	3
+2	5	\N	\N	60	0
+2	6	7	\N	60	0.5
+2	8	\N	\N	60	1.5
+3	9	\N	90	100	0
+3	10	11	90	100	3.5
+3	12	\N	90	100	5
+3	9	\N	60	90	0
+3	10	11	60	90	3
+3	12	\N	60	90	4
+3	9	\N	\N	60	0
+3	10	11	\N	60	1
+3	12	\N	\N	60	2
+4	13	\N	90	100	0
+4	14	15	90	100	3.5
+4	16	\N	90	100	5
+4	13	\N	60	90	0
+4	14	15	60	90	3
+4	16	\N	60	90	4
+4	13	\N	\N	60	0
+4	14	15	\N	60	1
+4	16	\N	\N	60	2
+\.
+
+
+--
+-- TOC entry 2875 (class 0 OID 16462)
+-- Dependencies: 209
+-- Data for Name: logOddana; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."logOddana" (id, data, "oddanaEnergia", kwota) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2874 (class 0 OID 16457)
+-- Dependencies: 208
+-- Data for Name: logWykorzystana; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."logWykorzystana" (id, data, "wykorzystanaEnergia", kwota) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2729 (class 2606 OID 16433)
+-- Name: Godziny Godziny_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Godziny"
+    ADD CONSTRAINT "Godziny_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2737 (class 2606 OID 16489)
+-- Name: MiesiaceOgniwaPK MiesiaceOgniwaPK_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."MiesiaceOgniwaPK"
+    ADD CONSTRAINT "MiesiaceOgniwaPK_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2735 (class 2606 OID 16476)
+-- Name: MiesiaceTaryfaPK MiesiaceTaryfaPK_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."MiesiaceTaryfaPK"
+    ADD CONSTRAINT "MiesiaceTaryfaPK_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2727 (class 2606 OID 16398)
+-- Name: MocGrzewcza MocGrzewcza_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."MocGrzewcza"
+    ADD CONSTRAINT "MocGrzewcza_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2733 (class 2606 OID 16466)
+-- Name: logOddana logOddana_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."logOddana"
+    ADD CONSTRAINT "logOddana_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2731 (class 2606 OID 16461)
+-- Name: logWykorzystana logWykorzystana_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."logWykorzystana"
+    ADD CONSTRAINT "logWykorzystana_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2739 (class 2606 OID 16495)
+-- Name: WydajnoscOgniw idGodzA; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."WydajnoscOgniw"
+    ADD CONSTRAINT "idGodzA" FOREIGN KEY ("idGodzA") REFERENCES public."Godziny"(id) NOT VALID;
+
+
+--
+-- TOC entry 2740 (class 2606 OID 16500)
+-- Name: WydajnoscOgniw idGodzB; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."WydajnoscOgniw"
+    ADD CONSTRAINT "idGodzB" FOREIGN KEY ("idGodzB") REFERENCES public."Godziny"(id) NOT VALID;
+
+
+--
+-- TOC entry 2738 (class 2606 OID 16490)
+-- Name: WydajnoscOgniw idMiesiace; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."WydajnoscOgniw"
+    ADD CONSTRAINT "idMiesiace" FOREIGN KEY ("idMiesiace") REFERENCES public."MiesiaceOgniwaPK"(id) NOT VALID;
+
+
+--
+-- TOC entry 2741 (class 2606 OID 16477)
+-- Name: Taryfa idMiesiaceTaryfa; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Taryfa"
+    ADD CONSTRAINT "idMiesiaceTaryfa" FOREIGN KEY ("idMiesiacaTaryfa") REFERENCES public."MiesiaceTaryfaPK"(id) NOT VALID;
+
+
+-- Completed on 2021-04-09 23:27:21
+
+--
+-- PostgreSQL database dump complete
+--
+
