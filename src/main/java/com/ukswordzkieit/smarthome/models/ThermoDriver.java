@@ -1,5 +1,7 @@
 package com.ukswordzkieit.smarthome.models;
 
+import jdk.internal.org.objectweb.asm.util.CheckAnnotationAdapter;
+
 import java.util.Vector;
 
 public class ThermoDriver
@@ -15,6 +17,9 @@ public class ThermoDriver
     double targetTemp = 0.0;
     double houseTemp = 0.0;
 
+    public double generatedOutput = 0.0;
+    Battery battery = new Battery();
+
     Vector<Radiator> radiators = new Vector<>();
     double ventilationTime = 0;
 
@@ -27,6 +32,13 @@ public class ThermoDriver
     public ThermoDriver()
     {
 
+    }
+
+    public void updateData()
+    {
+
+        TmpGenerator tmpGenerator = new TmpGenerator();
+        //outsideTemp = tmpGenerator.predict(System.currentTimeMillis(), )
     }
 
     public void setOutsideTemp(double outsideTemp)
@@ -79,13 +91,32 @@ public class ThermoDriver
         return otherDevicesHeat;
     }
 
-    public double calcHeatingTime()
+    public void heatOrCool()
     {
-        return 0.0;
+        if(targetTemp > houseTemp)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
+    public void heat()
+    {
+        int beginHeatingAt = nextTempChange - calcHeatingTime();
+        int endHeatingAt = nextTempChange + calcHeatingTime();
+    }
+
+    public int calcHeatingTime()
+    {
+        return (int)Math.abs(targetTemp - houseTemp);
     }
 
     public double calcHeatingPower()
     {
+        //if()
         return 0.0;
     }
 
