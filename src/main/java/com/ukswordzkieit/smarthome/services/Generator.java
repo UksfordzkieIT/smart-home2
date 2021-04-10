@@ -53,20 +53,20 @@ public class Generator {
         WRZESIEN_MIN, PAZDZIERNIK_MIN, LISTOPAD_MIN, GRUDZIEN_MIN};
 
     //Srednie zachmurzenie w miesiącu
-    static final double STYCZEN_SREDNIA_ZACH = 88.9;
-    static final double LUTY_SREDNIA_ZACH = 85.2;
-    static final double MARZEC_SREDNIA_ZACH = 72.6;
-    static final double KWIECIEN_SREDNIA_ZACH = 63.1;
-    static final double MAJ_SREDNIA_ZACH = 67.9;
-    static final double CZERWIEC_SREDNIA_ZACH = 68.3;
-    static final double LIPIEC_SREDNIA_ZACH = 67.4;
-    static final double SIERPIEN_SREDNIA_ZACH = 65.1;
-    static final double WRZESIEN_SREDNIA_ZACH = 62.1;
-    static final double PAZDZIERNIK_SREDNIA_ZACH = 70.6;
-    static final double LISTOPAD_SREDNIA_ZACH = 81.8;
-    static final double GRUDZIEN_SREDNIA_ZACH = 84.5;
-    static final double SREDNIA_ZACHMURZENIA = 11.6;
-    private double[] zachmurzenie = {STYCZEN_SREDNIA_ZACH, LUTY_SREDNIA_ZACH, MARZEC_SREDNIA_ZACH, KWIECIEN_SREDNIA_ZACH, MAJ_SREDNIA_ZACH,
+    static final int STYCZEN_SREDNIA_ZACH = 88;
+    static final int LUTY_SREDNIA_ZACH = 85;
+    static final int MARZEC_SREDNIA_ZACH = 72;
+    static final int KWIECIEN_SREDNIA_ZACH = 63;
+    static final int MAJ_SREDNIA_ZACH = 67;
+    static final int CZERWIEC_SREDNIA_ZACH = 68;
+    static final int LIPIEC_SREDNIA_ZACH = 67;
+    static final int SIERPIEN_SREDNIA_ZACH = 65;
+    static final int WRZESIEN_SREDNIA_ZACH = 62;
+    static final int PAZDZIERNIK_SREDNIA_ZACH = 70;
+    static final int LISTOPAD_SREDNIA_ZACH = 81;
+    static final int GRUDZIEN_SREDNIA_ZACH = 84;
+    static final int SREDNIA_ZACHMURZENIA = 12;
+    private int[] zachmurzenie = {STYCZEN_SREDNIA_ZACH, LUTY_SREDNIA_ZACH, MARZEC_SREDNIA_ZACH, KWIECIEN_SREDNIA_ZACH, MAJ_SREDNIA_ZACH,
     CZERWIEC_SREDNIA_ZACH, LIPIEC_SREDNIA_ZACH, SIERPIEN_SREDNIA_ZACH, WRZESIEN_SREDNIA_ZACH, PAZDZIERNIK_SREDNIA_ZACH, LISTOPAD_SREDNIA_ZACH, GRUDZIEN_SREDNIA_ZACH};
 
     public Boolean IsDay(double godzina, int miesiac){
@@ -84,9 +84,9 @@ public class Generator {
             double rand = random.nextDouble();
             double scaled = rand * roznicaTemperatury[miesiac - 1];
             tempZach[0] = scaled + temperatury[miesiac - 1];
-            rand = random.nextDouble();
-            scaled = rand * SREDNIA_ZACHMURZENIA;
-            double shifted = scaled - (SREDNIA_ZACHMURZENIA/2) + zachmurzenie[miesiac - 1];
+            int rand2 = random.nextInt(SREDNIA_ZACHMURZENIA);
+            rand2 = rand2 - SREDNIA_ZACHMURZENIA;
+            double shifted = rand2 + zachmurzenie[miesiac - 1];
             tempZach[1] = shifted;
         }
         //noc
