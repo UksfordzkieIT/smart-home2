@@ -1,5 +1,6 @@
 package com.ukswordzkieit.smarthome.models;
 
+import com.ukswordzkieit.smarthome.services.TmpGenerator;
 import org.springframework.stereotype.Component;
 
 import java.util.Vector;
@@ -7,6 +8,8 @@ import java.util.Vector;
 @Component
 public class ThermoDriver
 {
+    enum Mode {TRYB1, TRYB2, TRYB3, TRYB4}
+    Mode mode = Mode.TRYB1;
     final int MULTIPLAYER = 60;
     final double MULTIPLAYER_EFFICIENCY = 0.7;
     enum Weeks{MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
@@ -18,7 +21,7 @@ public class ThermoDriver
     double targetTemp = 0.0;
     double houseTemp = 0.0;
 
-    public double generatedOutput = 0.0;
+    double FotoVoltgeneratedOutput = 0.0;
     Battery battery = new Battery();
 
     Vector<Radiator> radiators = new Vector<>();
@@ -35,6 +38,16 @@ public class ThermoDriver
 
     }
 
+    public double getFotoVoltgeneratedOutput()
+    {
+        return FotoVoltgeneratedOutput;
+    }
+
+    public Battery getBattery()
+    {
+        return battery;
+    }
+
     public void updateData()
     {
 
@@ -42,55 +55,7 @@ public class ThermoDriver
         //outsideTemp = tmpGenerator.predict(System.currentTimeMillis(), )
     }
 
-    public void setOutsideTemp(double outsideTemp)
-    {
-        this.outsideTemp = outsideTemp;
-    }
 
-    public double getOutsideTemp()
-    {
-        return this.outsideTemp;
-    }
-
-    public void setTargetTemp(double targetTemp)
-    {
-        this.targetTemp = targetTemp;
-    }
-
-    public double getTargetTemp()
-    {
-        return this.targetTemp;
-    }
-
-    public void setHouseTemp(double houseTemp)
-    {
-        this.houseTemp = houseTemp;
-    }
-
-    public double getHouseTemp()
-    {
-        return this.houseTemp;
-    }
-
-    public void setNextTempChange(int nextTempChange)
-    {
-        this.nextTempChange = nextTempChange;
-    }
-
-    public void setOtherDevicesHeat(double otherDevicesHeat)
-    {
-        this.otherDevicesHeat = otherDevicesHeat * MULTIPLAYER_EFFICIENCY;
-    }
-
-    public double getOtherDevicesHead()
-    {
-        return otherDevicesHeat;
-    }
-
-    public double getOtherDevicesHeat()
-    {
-        return otherDevicesHeat;
-    }
 
     public void heatOrCool()
     {

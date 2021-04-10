@@ -1,7 +1,7 @@
 /*
 * Klasa generujaca temperatury w ciagu dnia
 * */
-package com.ukswordzkieit.smarthome.models;
+package com.ukswordzkieit.smarthome.services;
 
 import java.util.Vector;
 
