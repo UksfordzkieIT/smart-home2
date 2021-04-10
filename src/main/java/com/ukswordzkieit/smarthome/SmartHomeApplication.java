@@ -1,10 +1,15 @@
 package com.ukswordzkieit.smarthome;
 
 import com.ukswordzkieit.smarthome.models.database.Godziny;
+import com.ukswordzkieit.smarthome.models.database.Logoddana;
+import com.ukswordzkieit.smarthome.models.database.Miesiaceogniwapk;
 import com.ukswordzkieit.smarthome.services.GodzinyRepository;
-import jdk.internal.jline.internal.Log;
+
+import com.ukswordzkieit.smarthome.services.LogOddanaRepository;
+import com.ukswordzkieit.smarthome.services.MiesiaceogniwapkRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,15 +25,13 @@ public class SmartHomeApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(GodzinyRepository repository)
+	public CommandLineRunner demo(MiesiaceogniwapkRepository repository)
 	{
 		return (args) ->{
 			log.info("otrzymal");
-			for (Godziny godziny : repository.findAll())
+			for (Miesiaceogniwapk godziny : repository.findAll())
 			{
-				String output = godziny.getId() + " "
-					+ godziny.getGodzMax().toString() + " "
-					+ godziny.getGodzMax().toString();
+				String output = godziny.getId() + " " + godziny.getMiesiace();
 				System.out.println(output);
 			}
 		};

@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.sql.Time;
 
 @Entity
-@Table(name = "logwykorzystana0_")
-public class LogWykorzystana
+@Table(name = "godziny0_")
+public class Logoddana
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,17 +15,17 @@ public class LogWykorzystana
     Time data;
 
     @Column
-    double wykorzystana_energia;
+    double oddanaEnergia;
 
     @Column
     double kwota;
 
-    public LogWykorzystana() {}
+    public Logoddana() {}
 
-    public LogWykorzystana(Time data, double wykorzystana_energia, double kwota)
+    public Logoddana(Time data, double oddanaEnergia, double kwota)
     {
         this.data = data;
-        this.wykorzystana_energia = wykorzystana_energia;
+        this.oddanaEnergia = oddanaEnergia;
         this.kwota = kwota;
     }
 
@@ -39,9 +39,9 @@ public class LogWykorzystana
         return data;
     }
 
-    public double getWykorzystana_energia()
+    public double getOddanaEnergia()
     {
-        return wykorzystana_energia;
+        return oddanaEnergia;
     }
 
     public double getKwota()

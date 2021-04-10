@@ -26,4 +26,37 @@ public class Oczekiwanatemperatura
     {
 
     }
+
+    public Oczekiwanatemperatura(String typDnia, String godzinaMin, String godzinaMax, int temperatura)
+    {
+        this.typDnia = typDnia;
+        this.godzinaMin = godzinaMin;
+        this.godzinaMax = godzinaMax;
+        this.temperatura = temperatura;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public String getTypDnia()
+    {
+        return typDnia;
+    }
+
+    public String getGodzinaMin()
+    {
+        return godzinaMin;
+    }
+
+    public void setGodzinaMax(String godzinaMax)
+    {
+        this.godzinaMax = godzinaMax;
+    }
+
+    public int getTemperatura()
+    {
+        return temperatura;
+    }
 }

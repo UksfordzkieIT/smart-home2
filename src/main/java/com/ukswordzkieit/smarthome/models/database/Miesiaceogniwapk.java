@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "miesiaceogniwapk0_")
-public class Miesiacegniwapk
+public class Miesiaceogniwapk
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,9 +13,9 @@ public class Miesiacegniwapk
     @Column
     String miesiace;
 
-    public Miesiacegniwapk(){}
+    public Miesiaceogniwapk(){}
 
-    public Miesiacegniwapk(String miesiace)
+    public Miesiaceogniwapk(String miesiace)
     {
         this.miesiace = miesiace;
     }
