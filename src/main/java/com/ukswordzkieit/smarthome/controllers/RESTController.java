@@ -37,5 +37,5 @@ public class RESTController
         return weatherAPIconection.GetWeather("warszawa");
     }
 
-    
+
 }

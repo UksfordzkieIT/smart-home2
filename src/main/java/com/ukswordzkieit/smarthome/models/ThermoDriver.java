@@ -1,6 +1,9 @@
 package com.ukswordzkieit.smarthome.models;
 
+import com.ukswordzkieit.smarthome.models.database.Godziny;
+import com.ukswordzkieit.smarthome.services.GodzinyRepository;
 import com.ukswordzkieit.smarthome.services.TmpGenerator;
+import org.springframework.data.repository.Repository;
 import org.springframework.stereotype.Component;
 
 import java.util.Vector;
@@ -35,6 +38,7 @@ public class ThermoDriver
 
     public ThermoDriver()
     {
+
 
     }
 
