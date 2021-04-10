@@ -2,6 +2,7 @@ package com.ukswordzkieit.smarthome;
 
 import com.ukswordzkieit.smarthome.models.database.Godziny;
 import com.ukswordzkieit.smarthome.services.GodzinyRepository;
+import jdk.internal.jline.internal.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -22,12 +23,13 @@ public class SmartHomeApplication {
 	public CommandLineRunner demo(GodzinyRepository repository)
 	{
 		return (args) ->{
+			log.info("otrzymal");
 			for (Godziny godziny : repository.findAll())
 			{
-				//String output = godziny.getId() + " "
-				//		+ godziny.getGodzMax().toString() + " "
-				//		+ godziny.getGodzMax().toString();
-				log.info("otrzymal");
+				String output = godziny.getId() + " "
+					+ godziny.getGodzMax().toString() + " "
+					+ godziny.getGodzMax().toString();
+				System.out.println(output);
 			}
 		};
 	}

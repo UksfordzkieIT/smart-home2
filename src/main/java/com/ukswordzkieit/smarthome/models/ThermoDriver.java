@@ -1,7 +1,5 @@
 package com.ukswordzkieit.smarthome.models;
 
-
-
 import org.springframework.stereotype.Component;
 
 import java.util.Vector;
