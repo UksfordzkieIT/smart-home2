@@ -4,17 +4,17 @@ import javax.persistence.*;
 import java.sql.Time;
 
 @Entity
-@Table(name = "godziny")
+@Table(name = "godziny0_")
 public class Godziny
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    int id;
 
-    @Column(name = "godzMin")
+    @Column//(name = "godz_min")
     Time godzMin;
 
-    @Column(name = "godzMax")
+    @Column//(name = "godzMax")
     Time godzMax;
 
     public Godziny(){}

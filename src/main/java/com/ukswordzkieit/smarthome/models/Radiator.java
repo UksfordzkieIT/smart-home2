@@ -1,9 +1,5 @@
 package com.ukswordzkieit.smarthome.models;
 
-import javafx.util.Builder;
-
-import javax.swing.*;
-
 public class Radiator
 {
     String ip;
