@@ -18,9 +18,9 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class SmartHomeApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(SmartHomeApplication.class);
+private static final Logger log = LoggerFactory.getLogger(SmartHomeApplication.class);
 
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		SpringApplication.run(SmartHomeApplication.class, args);
 	}
 
@@ -36,4 +36,5 @@ public class SmartHomeApplication {
 			}
 		};
 	}
+
 }

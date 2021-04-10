@@ -1,5 +1,6 @@
 package com.ukswordzkieit.smarthome.controllers;
 
+import com.ukswordzkieit.smarthome.Weather.WeatherAPIconection;
 import com.ukswordzkieit.smarthome.models.ThermoDriver;
 import com.ukswordzkieit.smarthome.models.TmpGenerator;
 import com.ukswordzkieit.smarthome.models.database.Godziny;
@@ -13,13 +14,13 @@ import org.springframework.http.ResponseEntity;
 @RestController
 public class RESTController
 {
-    @Autowired
-    ThermoDriver thermoDriver;
-
     @RequestMapping("/test")
     public String index() {
-        //ThermoDriver thermoDriver = new ThermoDriver();
-        //thermoDriver.setHouseTemp(13.0);
-        return "joł";//Double.toString(thermoDriver.getHouseTemp());
+        String city = "Warszawa";
+        WeatherAPIconection Api = new WeatherAPIconection();
+        String weather = Api.GetWeather(city);
+        return weather;
+    @Autowired
+    ThermoDriver thermoDriver;
     }
 }
