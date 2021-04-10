@@ -13,8 +13,8 @@ public class RESTController
 {
     @RequestMapping("/test")
     public String index() {
-        ThermoDriver thermoDriver = new ThermoDriver();
-        thermoDriver.setHouseTemp(13.0);
-        return Double.toString(thermoDriver.getHouseTemp());
+        //ThermoDriver thermoDriver = new ThermoDriver();
+        //thermoDriver.setHouseTemp(13.0);
+        return "joł";//Double.toString(thermoDriver.getHouseTemp());
     }
 }
