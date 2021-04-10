@@ -1,6 +1,7 @@
 package com.ukswordzkieit.smarthome.controllers;
 
 import com.ukswordzkieit.smarthome.models.ThermoDriver;
+import com.ukswordzkieit.smarthome.models.TmpGenerator;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 @RestController
 public class RESTController
 {
+    @Autowired
+    ThermoDriver thermoDriver;
+
     @RequestMapping("/test")
     public String index() {
         //ThermoDriver thermoDriver = new ThermoDriver();

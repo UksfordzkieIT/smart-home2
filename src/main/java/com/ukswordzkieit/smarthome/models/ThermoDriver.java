@@ -1,9 +1,12 @@
 package com.ukswordzkieit.smarthome.models;
 
-import jdk.internal.org.objectweb.asm.util.CheckAnnotationAdapter;
+
+
+import org.springframework.stereotype.Component;
 
 import java.util.Vector;
 
+@Component
 public class ThermoDriver
 {
     final int MULTIPLAYER = 60;
@@ -116,8 +119,9 @@ public class ThermoDriver
 
     public double calcHeatingPower()
     {
-        //if()
-        return 0.0;
+        double producedPower = 0.0;
+        double requiredPower = 0.0;
+        return requiredPower - producedPower;
     }
 
     public double calcVentilationTime()
