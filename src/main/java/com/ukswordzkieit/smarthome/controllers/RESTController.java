@@ -14,13 +14,12 @@ import org.springframework.http.ResponseEntity;
 @RestController
 public class RESTController
 {
+    ThermoDriver thermoDriver = new ThermoDriver();
     @RequestMapping("/test")
     public String index() {
         String city = "Warszawa";
         WeatherAPIconection Api = new WeatherAPIconection();
         String weather = Api.GetWeather(city);
         return weather;
-    @Autowired
-    ThermoDriver thermoDriver;
     }
 }

@@ -2,20 +2,24 @@ package com.ukswordzkieit.smarthome.models.database;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name = "sredniamocpozostale0_")
+@Entity
+@Table(name = "sredniamocpozostale0_")
 public class Sredniamocpozostale
 {
-  //  @Column
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    int id;
+
+    @Column
     String typDnia;
 
-    //@Column
+    @Column
     String godzMin;
 
-   // @Column
+   @Column
     String godzMax;
 
-   // @Column
+    @Column
     String moc;
 
     public Sredniamocpozostale()
@@ -29,6 +33,11 @@ public class Sredniamocpozostale
         this.godzMin = godzMin;
         this.godzMax = godzMax;
         this.moc = moc;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 
     public String getTypDnia()

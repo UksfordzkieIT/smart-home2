@@ -1,11 +1,7 @@
 package com.ukswordzkieit.smarthome;
 
-import com.ukswordzkieit.smarthome.models.database.Godziny;
-import com.ukswordzkieit.smarthome.models.database.Logoddana;
 import com.ukswordzkieit.smarthome.models.database.Miesiaceogniwapk;
-import com.ukswordzkieit.smarthome.services.GodzinyRepository;
 
-import com.ukswordzkieit.smarthome.services.LogOddanaRepository;
 import com.ukswordzkieit.smarthome.services.MiesiaceogniwapkRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

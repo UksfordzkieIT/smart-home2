@@ -1,5 +1,6 @@
 package com.ukswordzkieit.smarthome.models.database;
 
-public class taryfa
+
+public class Taryfa
 {
 }
